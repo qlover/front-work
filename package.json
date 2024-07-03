@@ -1,9 +1,9 @@
 {
-  "name": "@qlover/fe-base",
-  "version": "1.0.106",
+  "name": "@qlover/fe-base-root-src",
+  "version": "1.0.111",
   "description": "A base frontwork",
   "type": "module",
-  "private": false,
+  "private": true,
   "files": [
     "dist",
     "package.json",
@@ -16,17 +16,14 @@
   "homepage": "https://github.com/qlover/fe-base#readme",
   "scripts": {
     "build": "npx tsc",
-    "clean": "node ./scripts/bin/clean.js",
     "prettier": "prettier packages --write",
-    "reinit": "node ./scripts/bin/init.js",
     "eslint": "eslint packages --ext .js,.ts --cache --fix",
     "lint": "eslint packages --ext .js,.ts --cache --fix",
     "test": "jest",
-    "setup:husky": "node scripts/bin/setup-husky.js",
-    "commit": "node ./scripts/bin/commit.js",
-    "release": "node ./scripts/bin/release.js",
-    "ts-run": "node ./scripts/bin/ts-run.js",
-    "clean:branch": "node ./scripts/bin/clean-branch.js"
+    "reinit": "fe-reinit",
+    "clean": "fe-clean",
+    "commit": "fe-commit",
+    "release": "fe-release"
   },
   "keywords": [],
   "author": "qlover",
@@ -42,6 +39,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@qlover/fe-scripts": "^0.0.6",
     "@release-it/conventional-changelog": "^8.0.1",
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.13.2",

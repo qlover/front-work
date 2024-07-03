@@ -1,5 +1,20 @@
 
 
+## [1.0.111](https://github.com/qlover/fe-base/compare/1.0.110...1.0.111) (2024-07-03)
+
+## [1.0.110](https://github.com/qlover/fe-base/compare/1.0.109...1.0.110) (2024-07-03)
+
+## [1.0.109](https://github.com/qlover/fe-base/compare/1.0.108...1.0.109) (2024-07-03)
+
+
+### Reverts
+
+* Revert "build: add quick script name (#76)" (#77) ([9768385](https://github.com/qlover/fe-base/commit/9768385c4ab50446f557b1e68702183c257e1049)), closes [#76](https://github.com/qlover/fe-base/issues/76) [#77](https://github.com/qlover/fe-base/issues/77)
+
+## [1.0.108](https://github.com/qlover/fe-base/compare/1.0.107...1.0.108) (2024-07-03)
+
+## [1.0.107](https://github.com/qlover/fe-base/compare/1.0.106...1.0.107) (2024-07-01)
+
 ## [1.0.106](https://github.com/qlover/fe-base/compare/1.0.104...1.0.106) (2024-06-27)
 
 
@@ -13,6 +28,17 @@
 
 ### Bug Fixes
 
+<<<<<<< HEAD
+* change pr branche name ([c35b267](https://github.com/qlover/fe-base/commit/c35b2679b0f7fecdec3c1749896e5a4b9802c811))
+* change pr branche name ([156d9a3](https://github.com/qlover/fe-base/commit/156d9a3cb6cc7c56eba295465b855a1725e192ed))
+
+## [1.0.102](https://github.com/qlover/fe-base/compare/1.0.99...1.0.102) (2024-06-27)
+
+
+### Bug Fixes
+
+=======
+>>>>>>> master
 * get release pr-branch ([7b07706](https://github.com/qlover/fe-base/commit/7b07706596a2dd18330023bc74dec55f4387916b))
 * get release pr-branch ([981276b](https://github.com/qlover/fe-base/commit/981276b95d6213486b23567b33db3bbef9401ddb))
 

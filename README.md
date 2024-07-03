@@ -12,14 +12,6 @@
 
 # scripts
 
-- build 打包
-- clean 清理所有工具生成文件或目录，如： node_modules, yarn.lock, dist...
-- prettier 格式化代码
-- reinit
-- eslint 与 lint 一样
-- lint 检查代码风格
-- commit 代码提交
-- release 用于代码发布
-- ts-run node 环境运行 typescript
-- test 测试
-- clean:branch 清理本地无效或在远程已被删除的分支
+```
+yarn add @qlover/fe-scripts --dev
+```
