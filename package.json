@@ -34,7 +34,8 @@
     "reinit": "fe-reinit",
     "clean": "fe-clean",
     "commit": "fe-commit",
-    "release": "fe-release"
+    "release": "fe-release",
+    "update-version": "fe-update-version"
   },
   "keywords": [],
   "author": "qlover",
@@ -48,7 +49,7 @@
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
-    "@qlover/fe-scripts": "^0.0.12",
+    "@qlover/fe-scripts": "^0.0.28",
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",

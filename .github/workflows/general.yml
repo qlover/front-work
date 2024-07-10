@@ -1,0 +1,33 @@
+name: FE General
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check-code:
+    if: contains(github.event.head_commit.message, 'chore(tag)') == false
+    runs-on: ubuntu-latest
+
+    steps:
+      # - name: Print GitHub Event Information
+      #   run: echo "${{ toJson(github.event) }}" > event.json
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.19.0'
+      - name: Install yarn
+        run: npm install -g yarn
+      - name: Install dependencies
+        run: yarn install
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test
+      - name: Build dist
+        run: yarn build

@@ -1,5 +1,17 @@
 
 
+## [1.0.113](https://github.com/qlover/fe-base/compare/1.0.112...1.0.113) (2024-07-10)
+
+
+### Bug Fixes
+
+* update-version script ([#89](https://github.com/qlover/fe-base/issues/89)) ([70c02dd](https://github.com/qlover/fe-base/commit/70c02dde5ec086038bc256ac8a0f7bda74007375))
+
+
+### Features
+
+* new ci flow ([#88](https://github.com/qlover/fe-base/issues/88)) ([d4cb449](https://github.com/qlover/fe-base/commit/d4cb449718120ddf9a0b709fb83faf2819e9becd))
+
 ## [1.0.112](https://github.com/qlover/fe-base/compare/1.0.111...1.0.112) (2024-07-04)
 
 ## [1.0.111](https://github.com/qlover/fe-base/compare/1.0.110...1.0.111) (2024-07-03)
