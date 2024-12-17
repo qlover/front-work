@@ -1,53 +1,6 @@
 import { config } from 'dotenv';
 import { existsSync } from 'node:fs';
-import { resolve } from 'path';
-import { Logger } from '@qlover/fe-utils';
-
-/**
- * Environment configuration options interface
- * @interface
- * @description
- * Significance: Defines initialization parameters for Env class
- * Core idea: Configure environment variable management
- * Main function: Type-safe environment configuration
- * Main purpose: Initialize environment handler
- * Example:
- * ```typescript
- * const options: EnvOptions = {
- *   rootPath: '/path/to/project',
- *   logger: new Logger()
- * };
- * ```
- */
-interface EnvOptions {
-  /** Root path for environment files */
-  rootPath: string;
-  /** Logger instance */
-  logger: Logger;
-}
-
-/**
- * Environment loading options interface
- * @interface
- * @description
- * Significance: Defines options for loading environment variables
- * Core idea: Control environment file loading behavior
- * Main function: Configure environment loading process
- * Main purpose: Customize environment loading
- * Example:
- * ```typescript
- * const loadOptions: LoadOptions = {
- *   preloadList: ['.env', '.env.local'],
- *   rootPath: '/custom/path'
- * };
- * ```
- */
-interface LoadOptions {
-  /** List of environment files to load */
-  preloadList: string[];
-  /** Optional root path override */
-  rootPath?: string;
-}
+import { resolve, dirname } from 'node:path';
 
 /**
  * Environment variable management class
@@ -67,12 +20,68 @@ interface LoadOptions {
  * ```
  */
 export class Env {
-  private rootPath: string;
-  private logger: Logger;
+  static searchEnv({
+    cwd = process.cwd(),
+    preloadList = ['.env.local', '.env'],
+    logger,
+    maxDepth = 5
+  } = {}) {
+    // limit max search depth to 10
+    // don't override maxDepth if it's not set
+    maxDepth = Math.min(maxDepth, 10);
+
+    // create Env instance
+    const env = new Env({ rootPath: cwd, logger: logger });
+
+    // recursive search up, until find .env file or reach root directory
+    let currentDir = cwd;
+    let lastDir = '';
+    let found = false;
+    let searchCount = 0;
+
+    while (currentDir !== lastDir) {
+      // check if current directory exists environment file
+      found = preloadList.some((file) => existsSync(resolve(currentDir, file)));
+
+      if (found) {
+        env.load({
+          preloadList,
+          rootPath: currentDir
+        });
+        break;
+      }
+
+      // check if reached max search depth
+      searchCount++;
+      if (searchCount >= maxDepth) {
+        logger?.warn(
+          `Search depth exceeded ${maxDepth} levels, stopping search at ${currentDir}`
+        );
+        break;
+      }
+
+      lastDir = currentDir;
+      currentDir = dirname(currentDir);
+
+      // check if reached root directory
+      if (currentDir === lastDir) {
+        logger?.warn('Reached root directory, stopping search');
+        break;
+      }
+    }
+
+    if (!found && logger) {
+      logger.warn(
+        `No environment files (${preloadList.join(', ')}) found in directory tree from ${cwd} to ${currentDir}`
+      );
+    }
+
+    return env;
+  }
 
   /**
    * Creates an Env instance
-   * @param options - Environment configuration options
+   * @param {EnvOptions} options - Environment configuration options
    * @description
    * Significance: Initializes environment management
    * Core idea: Setup environment configuration
@@ -86,15 +95,15 @@ export class Env {
    * });
    * ```
    */
-  constructor(options: EnvOptions) {
+  constructor(options) {
     this.rootPath = options.rootPath;
     this.logger = options.logger;
   }
 
   /**
    * Load environment variables from files
-   * @param options - Load configuration options
-   * @returns void
+   * @param {LoadOptions} options - Load configuration options
+   * @returns {void}
    * @description
    * Significance: Loads environment variables from files
    * Core idea: Sequential environment file loading
@@ -108,7 +117,7 @@ export class Env {
    * });
    * ```
    */
-  load(options: LoadOptions = { preloadList: [] }): void {
+  load(options = { preloadList: [] }) {
     const { preloadList, rootPath } = options;
 
     if (!preloadList.length) {
@@ -132,7 +141,7 @@ export class Env {
 
   /**
    * Remove environment variable
-   * @param variable - Environment variable name
+   * @param {string} variable - Environment variable name
    * @returns void
    * @description
    * Significance: Removes specific environment variable
@@ -144,7 +153,7 @@ export class Env {
    * env.remove('API_KEY');
    * ```
    */
-  remove(variable: string): void {
+  remove(variable) {
     if (process.env[variable]) {
       delete process.env[variable];
     }
@@ -152,7 +161,7 @@ export class Env {
 
   /**
    * Get environment variable value
-   * @param variable - Environment variable name
+   * @param {string} variable - Environment variable name
    * @returns Environment variable value or undefined
    * @description
    * Significance: Retrieves environment variable value
@@ -164,14 +173,14 @@ export class Env {
    * const apiKey = env.get('API_KEY');
    * ```
    */
-  get(variable: string): string | undefined {
+  get(variable) {
     return process.env[variable];
   }
 
   /**
    * Set environment variable
-   * @param variable - Environment variable name
-   * @param value - Value to set
+   * @param {string} variable - Environment variable name
+   * @param {string} value - Value to set
    * @returns void
    * @description
    * Significance: Sets environment variable value
@@ -183,14 +192,14 @@ export class Env {
    * env.set('DEBUG', 'true');
    * ```
    */
-  set(variable: string, value: string): void {
+  set(variable, value) {
     process.env[variable] = value;
   }
 
   /**
    * Get and remove environment variable
-   * @param variable - Environment variable name
-   * @returns Environment variable value or undefined
+   * @param {string} variable - Environment variable name
+   * @returns {string|undefined} Environment variable value or undefined
    * @description
    * Significance: Retrieves and removes environment variable
    * Core idea: Atomic get and delete operation
@@ -201,7 +210,7 @@ export class Env {
    * const tempKey = env.getDestroy('TEMP_API_KEY');
    * ```
    */
-  getDestroy(variable: string): string | undefined {
+  getDestroy(variable) {
     const value = process.env[variable];
     this.remove(variable);
     return value;

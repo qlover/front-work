@@ -1,0 +1,51 @@
+{
+  "name": "@qlover/fe-core",
+  "description": "A core for frontwork",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/es/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qlover/fe-base.git",
+    "directory": "packages/fe-core"
+  },
+  "homepage": "https://github.com/qlover/fe-base/tree/master/packages/fe-core#readme",
+  "keywords": [
+    "utils",
+    "fe-core"
+  ],
+  "author": "qlover",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build:common:docs": "fe-code2md -p ./src/index.ts -g ./docs -o ./docs/.output/common.json -t ./docs/.output/common.tpl.json",
+    "build:docs": "npm run build:common:docs",
+    "build:docs:debug": "npm run build:common:docs -- --debug"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "merge": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.12",
+    "axios": "^1.7.9"
+  }
+}

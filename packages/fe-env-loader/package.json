@@ -1,0 +1,26 @@
+{
+  "name": "@qlover/fe-env-loader",
+  "description": "A env lodaer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qlover/fe-base.git",
+    "directory": "packages/fe-env-loader"
+  },
+  "homepage": "https://github.com/qlover/fe-base/tree/master/packages/fe-env-loader#readme",
+  "devDependencies": {
+    "@qlover/fe-core": "*",
+    "dotenv": "^16.4.5"
+  }
+}

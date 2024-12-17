@@ -1,10 +1,7 @@
 {
+  "extends": "@qlover/fe-standard/config/tsconfig.base.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "baseUrl": "./",
     "outDir": "dist",
-    "skipLibCheck": true,
-    "moduleResolution": "Bundler",
     "target": "ES2015",
     "downlevelIteration": true,
     "strict": true,

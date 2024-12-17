@@ -8,7 +8,6 @@ import { builtinModules } from 'module';
 import { readFileSync, rmSync } from 'fs';
 import { join } from 'path';
 import { Env } from '@qlover/fe-env-loader';
-
 const pkg = JSON.parse(
   readFileSync(join(process.cwd(), 'package.json'), 'utf-8')
 );
@@ -26,9 +25,8 @@ const treeshake = {
 const defaultExternal = [
   ...builtinModules,
   ...builtinModules.map((mod) => `node:${mod}`),
-  ...Object.keys(pkg.dependencies),
-  ...Object.keys(pkg.devDependencies),
-  'commitizen/dist/cli/git-cz.js'
+  // ...Object.keys(pkg.dependencies),
+  ...Object.keys(pkg.devDependencies)
 ];
 
 function createPlugin(minify) {
@@ -41,14 +39,7 @@ function createPlugin(minify) {
     typescript({
       tsconfig: './tsconfig.json',
       tsconfigOverride: {
-        compilerOptions: {
-          declaration: true,
-          sourceMap: true,
-          inlineSourceMap: false,
-          inlineSources: false,
-          importHelpers: false,
-          noEmitHelpers: true
-        }
+        include: ['src']
       }
     }),
     minify && terser()
@@ -67,24 +58,21 @@ cleanBuildDir();
  */
 const config = [
   {
-    input: {
-      index: 'src/index.ts',
-      'lib/index': 'src/lib/index.ts',
-      'scripts/index': 'src/scripts/index.ts'
-    },
+    input: 'src/index.ts',
     external: defaultExternal,
     output: [
       {
-        dir: 'dist/cjs',
-        format: 'cjs',
-        preserveModules: true,
-        preserveModulesRoot: 'src'
+        file: 'dist/cjs/index.js',
+        format: 'cjs'
       },
       {
-        dir: 'dist/es',
-        format: 'es',
-        preserveModules: true,
-        preserveModulesRoot: 'src'
+        file: 'dist/es/index.js',
+        format: 'es'
+      },
+      {
+        file: 'dist/index.js',
+        format: 'umd',
+        name: 'FeCore'
       }
     ],
     plugins: createPlugin(isProduction),
@@ -94,16 +82,16 @@ const config = [
     input: './src/index.ts',
     output: [
       {
-        dir: 'dist/cjs',
-        format: 'es',
-        preserveModules: true,
-        preserveModulesRoot: 'src'
+        file: 'dist/cjs/index.d.ts',
+        format: 'cjs'
       },
       {
-        dir: 'dist/es',
-        format: 'es',
-        preserveModules: true,
-        preserveModulesRoot: 'src'
+        file: 'dist/es/index.d.ts',
+        format: 'es'
+      },
+      {
+        file: 'dist/index.d.ts',
+        format: 'umd'
       }
     ],
     plugins: [dts()],

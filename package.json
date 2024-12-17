@@ -10,9 +10,11 @@
   },
   "homepage": "https://github.com/qlover/fe-base#readme",
   "scripts": {
-    "build": "yarn build:fe-utils && yarn build:fe-scripts && yarn build:fe-code2markdown",
+    "build": "yarn build:fe-scripts && yarn build:fe-core && yarn build:fe-core-server && yarn build:fe-code2markdown",
     "build:fe-utils": "yarn workspace @qlover/fe-utils build",
     "build:fe-scripts": "yarn workspace @qlover/fe-scripts build",
+    "build:fe-core": "yarn workspace @qlover/fe-core build",
+    "build:fe-core-server": "yarn workspace @qlover/fe-core-server build",
     "build:fe-code2markdown": "yarn workspace @qlover/fe-code2markdown build",
     "release-pr:fe-utils": "fe-release-pr -p ./packages/fe-utils -V",
     "release:fe-utils": "fe-release -p ./packages/fe-utils -V",

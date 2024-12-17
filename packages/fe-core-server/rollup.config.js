@@ -27,8 +27,7 @@ const defaultExternal = [
   ...builtinModules,
   ...builtinModules.map((mod) => `node:${mod}`),
   ...Object.keys(pkg.dependencies),
-  ...Object.keys(pkg.devDependencies),
-  'commitizen/dist/cli/git-cz.js'
+  ...Object.keys(pkg.devDependencies)
 ];
 
 function createPlugin(minify) {
@@ -67,11 +66,7 @@ cleanBuildDir();
  */
 const config = [
   {
-    input: {
-      index: 'src/index.ts',
-      'lib/index': 'src/lib/index.ts',
-      'scripts/index': 'src/scripts/index.ts'
-    },
+    input: './src/index.ts',
     external: defaultExternal,
     output: [
       {

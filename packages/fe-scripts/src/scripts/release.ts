@@ -1,13 +1,12 @@
-import { Env } from '../lib';
 import { FeScriptContext } from '../lib/FeScriptContext';
 import { Release, ReleaseOptions } from '../lib/Release';
-import { searchEnv } from './search-env';
+import { Env } from '@qlover/fe-env-loader';
 
 function createRelease(
   scriptsOptions: Partial<FeScriptContext<ReleaseOptions>>
 ): { release: Release; env: Env } | undefined {
   const context = new FeScriptContext(scriptsOptions);
-  const env = searchEnv({
+  const env = Env.searchEnv({
     logger: context.logger,
     preloadList: context.feConfig.envOrder
   });
