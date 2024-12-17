@@ -5,7 +5,7 @@ import { Utils } from './Utils.js';
 import { ProjectReader } from './ProjectReader.js';
 import { TypeDocConverter } from './TypeDocConverter.js';
 import { ParserContextMap, ReflectionGeneraterContext } from './type';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 
 export class ReflectionGenerater {
   private context: ReflectionGeneraterContext;

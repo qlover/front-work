@@ -1,6 +1,6 @@
 import shell from 'shelljs';
 import { execa } from 'execa';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 import lodash from 'lodash';
 
 const { isEmpty, template: lodashTemplate } = lodash;

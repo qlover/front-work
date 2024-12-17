@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'path';
 import { FeConfig } from '../feConfig';
 import lodash from 'lodash';
+import { Logger } from '@qlover/fe-core';
 
 const { merge } = lodash;
 
@@ -108,7 +109,7 @@ export interface FeScriptContextOptions<T> {
  */
 export class FeScriptContext<T = unknown> {
   /** Logger instance */
-  public readonly logger: ScriptsLogger;
+  public readonly logger: Logger;
   /** Shell instance */
   public readonly shell: Shell;
   /** Fe configuration */

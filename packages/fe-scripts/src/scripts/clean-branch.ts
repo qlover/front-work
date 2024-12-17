@@ -1,6 +1,9 @@
 import { execSync } from 'child_process';
 import { createInterface } from 'readline';
-import { FeScriptContext } from '../lib/FeScriptContext';
+import {
+  FeScriptContext,
+  FeScriptContextOptions
+} from '../lib/FeScriptContext';
 import lodash from 'lodash';
 
 const { union } = lodash;
@@ -33,7 +36,7 @@ function composeBranches(
 }
 
 export function cleanBranch(
-  options: Partial<FeScriptContext<CleanBranchOptions>>
+  options: FeScriptContextOptions<CleanBranchOptions>
 ): void {
   const context = new FeScriptContext(options);
   const { logger, verbose, dryRun } = context;

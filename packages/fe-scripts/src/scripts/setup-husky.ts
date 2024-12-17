@@ -1,6 +1,9 @@
 import { resolve, join } from 'node:path';
 import { writeFileSync, readFileSync } from 'node:fs';
-import { FeScriptContext } from '../lib/FeScriptContext';
+import {
+  FeScriptContext,
+  FeScriptContextOptions
+} from '../lib/FeScriptContext';
 
 export interface SetupHuskyOptions {
   /**
@@ -15,7 +18,7 @@ export interface SetupHuskyOptions {
 }
 
 export async function setupHusky(
-  options: Partial<FeScriptContext<SetupHuskyOptions>>
+  options: FeScriptContextOptions<SetupHuskyOptions>
 ): Promise<void> {
   const context = new FeScriptContext(options);
   const { logger, shell } = context;

@@ -1,6 +1,6 @@
 import { createRequire } from 'module';
 import { exec } from 'child_process';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 
 const require = createRequire(import.meta.url);
 

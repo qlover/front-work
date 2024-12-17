@@ -4,7 +4,7 @@ import lodash from 'lodash';
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
 import { FeConfig, FeReleaseConfig } from '../../feConfig';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 import { ReleaseContext } from '../Release';
 
 const { merge, set, get } = lodash;

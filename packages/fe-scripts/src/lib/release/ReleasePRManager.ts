@@ -1,7 +1,7 @@
 import { ReleaseUtil } from './ReleaseUtil';
 import { ReleaseConfiger } from './ReleaseConfiguter';
 import { Octokit } from '@octokit/rest';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 import { FeReleaseConfig } from '../../feConfig';
 
 /**

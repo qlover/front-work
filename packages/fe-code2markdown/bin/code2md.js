@@ -5,7 +5,7 @@ import { Command } from 'commander';
 import fs from 'fs-extra';
 import { fileURLToPath } from 'url';
 import { ReflectionGenerater } from '../dist/es/index.js';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 const program = new Command();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(

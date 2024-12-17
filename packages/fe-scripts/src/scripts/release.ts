@@ -1,9 +1,12 @@
-import { FeScriptContext } from '../lib/FeScriptContext';
+import {
+  FeScriptContext,
+  FeScriptContextOptions
+} from '../lib/FeScriptContext';
 import { Release, ReleaseOptions } from '../lib/Release';
 import { Env } from '@qlover/fe-env-loader';
 
 function createRelease(
-  scriptsOptions: Partial<FeScriptContext<ReleaseOptions>>
+  scriptsOptions: Partial<FeScriptContextOptions<ReleaseOptions>>
 ): { release: Release; env: Env } | undefined {
   const context = new FeScriptContext(scriptsOptions);
   const env = Env.searchEnv({
@@ -39,7 +42,7 @@ function createRelease(
 }
 
 export async function release(
-  options: Partial<FeScriptContext<ReleaseOptions>>
+  options: Partial<FeScriptContextOptions<ReleaseOptions>>
 ): Promise<void> {
   const results = createRelease(options);
   if (!results) {
@@ -69,7 +72,7 @@ export async function release(
 }
 
 export async function createReleasePR(
-  options: Partial<FeScriptContext<ReleaseOptions>>
+  options: Partial<FeScriptContextOptions<ReleaseOptions>>
 ): Promise<void> {
   const results = createRelease(options);
   if (!results) {

@@ -3,7 +3,7 @@ import releaseIt from 'release-it';
 import { ReleaseConfiger } from './release/ReleaseConfiguter';
 import { ReleasePRManager } from './release/ReleasePRManager';
 import { Shell } from './Shell';
-import { Logger } from '@qlover/fe-utils';
+import { Logger } from '@qlover/fe-core';
 import { FeScriptContext } from './FeScriptContext';
 import lodash from 'lodash';
 
