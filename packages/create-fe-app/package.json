@@ -1,0 +1,49 @@
+{
+  "name": "create-fe-app",
+  "version": "0.0.1",
+  "type": "module",
+  "private": false,
+  "main": "./dist/es/index.js",
+  "module": "./dist/es/index.js",
+  "types": "./dist/es/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/es/index.d.ts"
+    },
+    "./cjs/*": "./dist/cjs/*",
+    "./es/*": "./dist/es/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "package.json"
+  ],
+  "bin": {
+    "create-fe-app": "./bin/create-fe-app.js"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build:ts": "rollup -c rollup.config.ts --configPlugin typescript"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qlover/fe-base.git",
+    "directory": "packages/create-fe-app"
+  },
+  "homepage": "https://github.com/qlover/fe-base#readme",
+  "keywords": [
+    "create-fe-app",
+    "fe-scripts",
+    "scripts"
+  ],
+  "author": "qlover",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

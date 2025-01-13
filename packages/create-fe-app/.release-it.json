@@ -1,0 +1,47 @@
+{
+  "git": {
+    "requireUpstream": true,
+    "commit": true,
+    "commitMessage": "chore(tag): create-fe-app v${version}",
+    "tag": true,
+    "tagName": "create-fe-app-v${version}",
+    "tagMatch": "create-fe-app-v*",
+    "getLatestTagFromAllRefs": true,
+    "tagAnnotation": "chore(tag): create-fe-app v${version}",
+    "push": true,
+    "pushArgs": ["--follow-tags"]
+  },
+  "npm": {
+    "publish": true,
+    "publishPath": "",
+    "versionArgs": ["--allow-same-version", "--workspaces-update=false"]
+  },
+  "github": {
+    "release": true,
+    "releaseName": "chore(tag): create-fe-app v${version}"
+  },
+
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          { "type": "feat", "section": "Features" },
+          { "type": "fix", "section": "Bug Fixes" },
+          { "type": "revert", "section": "Reverts" },
+          { "type": "build", "hidden": true, "section": "Build System" },
+          { "type": "chore", "hidden": true },
+          { "type": "docs", "section": "Documentation" },
+          { "type": "style", "hidden": true },
+          { "type": "refactor", "hidden": true },
+          { "type": "perf", "hidden": true },
+          { "type": "test", "hidden": true }
+        ]
+      },
+      "gitRawCommitsOpts": {
+        "path": "."
+      }
+    }
+  }
+}
